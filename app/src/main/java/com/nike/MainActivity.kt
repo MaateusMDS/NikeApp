@@ -42,6 +42,18 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val user = getSharedPreferences("com.nike.${email}", Context.MODE_PRIVATE)
+
+            if (user.getString("email", "") != email) {
+                binding.editTextEmail.error = "Nenhuma conta possui este email cadastrado."
+                return@setOnClickListener
+            } else
+
+            if (user.getString("senha", "") != senha) {
+                binding.editTextSenha.error = "Senha incorreta."
+                return@setOnClickListener
+            }
+
             val prefs = getSharedPreferences("com.nike.lastLogin", Context.MODE_PRIVATE)
             prefs.edit().apply {
                 putString("email", email)
