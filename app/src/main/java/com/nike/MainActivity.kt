@@ -54,12 +54,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val prefs = getSharedPreferences("com.nike.lastLogin", Context.MODE_PRIVATE)
-            prefs.edit().apply {
-                putString("email", email)
-                apply()
-            }
-
             val intent = Intent(this, Home::class.java)
             intent.putExtra("email", email)
             startActivity(intent)
