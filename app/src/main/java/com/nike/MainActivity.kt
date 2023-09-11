@@ -1,10 +1,13 @@
 package com.nike
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.widget.Toast
 import com.nike.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,25 +19,44 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.registrarButton.setOnClickListener {
+            startActivity(Intent(this, Register::class.java))
+        }
+
+        val lastLogin = getSharedPreferences("com.nike.lastLogin", Context.MODE_PRIVATE)
+        if (lastLogin.getString("email", "") != "") {
+            val intent = Intent(this, Home::class.java)
+            intent.putExtra("email", lastLogin.getString("email", ""))
+            startActivity(intent)
+        }
+
         binding.loginButton.setOnClickListener {
-            val email = binding.editTextEmail.text.toString()
-            val senha = binding.editTextPassword.text.toString()
+            val email = binding.editTextEmail.text.toString().lowercase()
+            val senha = binding.editTextSenha.text.toString()
 
             if (email.isEmpty()) {
                 binding.editTextEmail.error = "Preencha o email"
                 return@setOnClickListener
             } else if (senha.isEmpty()) {
-                binding.editTextPassword.error = "Preencha a senha"
+                binding.editTextSenha.error = "Preencha a senha"
                 return@setOnClickListener
             }
 
-            startActivity(Intent(this, Home::class.java))
+            val prefs = getSharedPreferences("com.nike.lastLogin", Context.MODE_PRIVATE)
+            prefs.edit().apply {
+                putString("email", email)
+                apply()
+            }
+
+            val intent = Intent(this, Home::class.java)
+            intent.putExtra("email", email)
+            startActivity(intent)
         }
 
         binding.editTextEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (binding.editTextEmail.text.toString()
-                        .isNotEmpty() && binding.editTextPassword.text.toString().isNotEmpty()
+                        .isNotEmpty() && binding.editTextSenha.text.toString().isNotEmpty()
                 ) {
                     binding.loginButton.backgroundTintList =
                         getColorStateList(R.color.blackSecondary)
@@ -51,10 +73,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.editTextPassword.addTextChangedListener(object : TextWatcher {
+        binding.editTextSenha.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (binding.editTextEmail.text.toString()
-                        .isNotEmpty() && binding.editTextPassword.text.toString().isNotEmpty()
+                        .isNotEmpty() && binding.editTextSenha.text.toString().isNotEmpty()
                 ) {
                     binding.loginButton.backgroundTintList =
                         getColorStateList(R.color.blackSecondary)

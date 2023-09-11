@@ -25,7 +25,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/titleSessao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -53,7 +53,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome ou Email"
+            android:hint="E-mail"
             android:textColorHint="#CCCCCC"
             app:boxStrokeColor="@color/black"
             app:hintTextColor="@color/black">
@@ -74,11 +74,11 @@
             android:layout_height="wrap_content"
             android:hint="Senha"
             android:textColorHint="#CCCCCC"
-            app:passwordToggleTint="@color/blackSecondary"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/blackSecondary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword"
+                android:id="@+id/editTextSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -132,7 +132,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/registrarButton"
             android:layout_width="173dp"
             android:layout_height="61dp"
             android:layout_gravity="center_horizontal"
