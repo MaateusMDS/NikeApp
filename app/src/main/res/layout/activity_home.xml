@@ -4,6 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Home">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="78dp"
+        android:layout_height="100dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/logo_nike"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="Olá, usuário!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoDesenvolvimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Em desenvolvimento..."
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textoInicio"
+        app:layout_constraintStart_toStartOf="@id/textoInicio"
+        app:layout_constraintEnd_toEndOf="@id/textoInicio"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp" />
+
+    <ImageView
+        android:id="@+id/imageViewDevelopment"
+        android:layout_width="400dp"
+        android:layout_height="343dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/development"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textoDesenvolvimento" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sair"
+        android:backgroundTint="@color/blackSecondary"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/imageViewDevelopment"
+    android:layout_marginTop="16dp"
+    android:id="@+id/saidaButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
